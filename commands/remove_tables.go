@@ -28,8 +28,9 @@ func RemoveTables(inputPath string, outputPath string, tables []string) {
 
 	c = strings.TrimSpace(c)
 
-	if c != "Y" {
+	if strings.ToLower(c) != "y" {
 		fmt.Println("Exiting, no action performed")
+		return
 	} else {
 		fmt.Println("Processing...\n")
 	}
@@ -39,8 +40,6 @@ func RemoveTables(inputPath string, outputPath string, tables []string) {
 
 	w, fw := io.GetWriter(outputPath)
 	defer fw.Close()
-
-	//skipping := false
 
 	replaceRegex := regexp.MustCompile(fmt.Sprintf(parser.TableStructureRegexReplace, strings.Join(tables, "|")))
 

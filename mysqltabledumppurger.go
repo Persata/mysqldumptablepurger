@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 	"gopkg.in/alecthomas/kingpin.v2"
-	"github.com/persata/mysqldumptablepurger/commands"
+	"github.com/Persata/mysqldumptablepurger/commands"
 )
 
 var (

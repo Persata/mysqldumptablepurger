@@ -2,8 +2,8 @@ package commands
 
 import (
 	"fmt"
-	"github.com/persata/mysqldumptablepurger/io"
-	"github.com/persata/mysqldumptablepurger/parser"
+	"github.com/Persata/mysqldumptablepurger/io"
+	"github.com/Persata/mysqldumptablepurger/parser"
 )
 
 func ListTables(path string) {

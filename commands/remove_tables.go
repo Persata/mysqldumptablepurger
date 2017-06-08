@@ -5,8 +5,8 @@ import (
 	"os"
 	"bufio"
 	"strings"
-	"github.com/persata/mysqldumptablepurger/io"
-	"github.com/persata/mysqldumptablepurger/parser"
+	"github.com/Persata/mysqldumptablepurger/io"
+	"github.com/Persata/mysqldumptablepurger/parser"
 	"regexp"
 )
 

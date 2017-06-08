@@ -10,7 +10,7 @@ func GetScanner(path string) (*bufio.Scanner, *os.File) {
 
 	s := bufio.NewScanner(f)
 
-	s.Buffer(make([]byte, 0), 1024*1024)
+	s.Buffer(make([]byte, 0), 2048*2048)
 
 	return s, f
 }

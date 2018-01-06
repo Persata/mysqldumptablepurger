@@ -2,21 +2,35 @@ package commands
 
 import (
 	"fmt"
-	"github.com/Persata/mysqldumptablepurger/io"
+	"github.com/Persata/mysqldumptablepurger/iowrapper"
 	"github.com/Persata/mysqldumptablepurger/parser"
 )
 
 func ListTables(path string) int {
-	s, f := io.GetScanner(path)
+	fmt.Println(fmt.Sprintf("Scanning for tables in %s...\n", path))
+
+	tables := GetTablesList(path)
+
+	for _, table := range tables {
+		fmt.Println(table)
+	}
+
+	fmt.Println("\nScan complete!")
+
+	return 0
+}
+
+func GetTablesList(path string) []string {
+	s, f := iowrapper.GetScanner(path)
 	defer f.Close()
 
-	fmt.Println(fmt.Sprintf("Scanning for tables in %s...\n", path))
+	var tables []string
 
 	for s.Scan() {
 		match := parser.TableStructureRegex.FindStringSubmatch(s.Text())
 
 		if len(match) > 0 {
-			fmt.Println(match[1])
+			tables = append(tables, match[1])
 		}
 	}
 
@@ -24,7 +38,5 @@ func ListTables(path string) int {
 		fmt.Println(fmt.Sprintf("An error occurred scanning the file: %s", s.Err()))
 	}
 
-	fmt.Println("\nScan complete!")
-
-	return 0
+	return tables
 }

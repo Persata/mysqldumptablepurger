@@ -5,13 +5,14 @@ import (
 	"os"
 	"bufio"
 	"strings"
-	"github.com/Persata/mysqldumptablepurger/io"
+	"github.com/Persata/mysqldumptablepurger/iowrapper"
 	"github.com/Persata/mysqldumptablepurger/parser"
 	"regexp"
 )
 
 func RemoveTables(inputPath string, outputPath string, tables []string) int {
-	fmt.Println("The following tables will be removed: \n")
+	fmt.Println("The following tables will be removed:")
+	fmt.Println()
 
 	for _, table := range tables {
 		fmt.Println(fmt.Sprintf("- %s", table))
@@ -32,13 +33,14 @@ func RemoveTables(inputPath string, outputPath string, tables []string) int {
 		fmt.Println("Exiting, no action performed")
 		return 0
 	} else {
-		fmt.Println("Processing...\n")
+		fmt.Println("Processing...")
+		fmt.Println()
 	}
 
-	s, fr := io.GetScanner(inputPath)
+	s, fr := iowrapper.GetScanner(inputPath)
 	defer fr.Close()
 
-	w, fw := io.GetWriter(outputPath)
+	w, fw := iowrapper.GetWriter(outputPath)
 	defer fw.Close()
 
 	replaceRegex := regexp.MustCompile(fmt.Sprintf(parser.TableStructureRegexReplace, strings.Join(tables, "|")))

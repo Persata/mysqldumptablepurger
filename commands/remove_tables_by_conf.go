@@ -12,6 +12,23 @@ type RemoveConf struct {
 }
 
 func RemoveTablesByConf(inputPath string, configFilePath string) int {
+
+	configFileData := GetConfigFileData(configFilePath)
+
+	if len(configFileData.OutputFile) == 0 {
+		fmt.Println(fmt.Sprintf("No output file found in the given config file - got '%s'.", configFileData.OutputFile))
+		return 1
+	}
+
+	if len(configFileData.Tables) == 0 {
+		fmt.Println("Specified config file does not contain any tables to remove.")
+		return 1
+	}
+
+	return RemoveTables(inputPath, configFileData.OutputFile, configFileData.Tables)
+}
+
+func GetConfigFileData(configFilePath string) RemoveConf {
 	configFileBuffer, err := ioutil.ReadFile(configFilePath)
 
 	if err != nil {
@@ -26,15 +43,5 @@ func RemoveTablesByConf(inputPath string, configFilePath string) int {
 		panic(err)
 	}
 
-	if len(configFileData.OutputFile) == 0 {
-		fmt.Println(fmt.Sprintf("No output file found in the given config file - got '%s'.", configFileData.OutputFile))
-		return 1
-	}
-
-	if len(configFileData.Tables) == 0 {
-		fmt.Println("Specified config file does not contain any tables to remove.")
-		return 1
-	}
-
-	return RemoveTables(inputPath, configFileData.OutputFile, configFileData.Tables)
+	return configFileData
 }

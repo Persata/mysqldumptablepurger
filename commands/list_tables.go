@@ -6,7 +6,7 @@ import (
 	"github.com/Persata/mysqldumptablepurger/parser"
 )
 
-func ListTables(path string) {
+func ListTables(path string) int {
 	s, f := io.GetScanner(path)
 	defer f.Close()
 
@@ -25,4 +25,6 @@ func ListTables(path string) {
 	}
 
 	fmt.Println("\nScan complete!")
+
+	return 0
 }

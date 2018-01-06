@@ -10,7 +10,7 @@ import (
 	"regexp"
 )
 
-func RemoveTables(inputPath string, outputPath string, tables []string) {
+func RemoveTables(inputPath string, outputPath string, tables []string) int {
 	fmt.Println("The following tables will be removed: \n")
 
 	for _, table := range tables {
@@ -30,7 +30,7 @@ func RemoveTables(inputPath string, outputPath string, tables []string) {
 
 	if strings.ToLower(c) != "y" {
 		fmt.Println("Exiting, no action performed")
-		return
+		return 0
 	} else {
 		fmt.Println("Processing...\n")
 	}
@@ -76,4 +76,6 @@ func RemoveTables(inputPath string, outputPath string, tables []string) {
 	w.Flush()
 
 	fmt.Println(fmt.Sprintf("\nExiting, %d tables removed", matchCount))
+
+	return 0
 }

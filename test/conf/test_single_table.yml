@@ -1,0 +1,3 @@
+outputFile: test_dump_cleaned.sql
+tables:
+    - test_table_1

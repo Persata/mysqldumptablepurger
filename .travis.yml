@@ -2,7 +2,6 @@ language: go
 
 go:
     - 1.9.x
-    - release
 
 script:
  - go test -v ./...

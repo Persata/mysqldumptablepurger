@@ -29,7 +29,7 @@ func main() {
 	case list.FullCommand():
 		commands.ListTables(*listDumpFile)
 
-	// List all tables in the given MySQL dump
+	// Make a copy of the given MySQL dump with the specified tables removed
 	case remove.FullCommand():
 		commands.RemoveTables(*removeDumpFile, *removeNewFile, *removeTables)
 

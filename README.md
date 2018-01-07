@@ -1,4 +1,4 @@
-# MySQL Dump Table Purger [![Build Status](https://travis-ci.org/Persata/mysqltabledumppurger.svg?branch=master)](https://travis-ci.org/Persata/mysqltabledumppurger)
+# MySQL Dump Table Purger [![Build Status](https://travis-ci.org/Persata/mysqldumptablepurger.svg?branch=master)](https://travis-ci.org/Persata/mysqltabledumppurger)
 
 A command line application to remove table data from MySQL dumps, while keeping the table structure itself intact.
 

@@ -1,19 +1,17 @@
 language: go
 
 go:
-    - 1.9.x
+    - 1.x
+    - tip
 
-script:
- - go test -v ./...
-
-env:
-    - DEP_VERSION="0.3.2"
-
-before_install:
-    # Download the binary to bin folder in $GOPATH
-    - curl -L -s https://github.com/golang/dep/releases/download/v${DEP_VERSION}/dep-linux-amd64 -o $GOPATH/bin/dep
-    # Make the binary executable
-    - chmod +x $GOPATH/bin/dep
+matrix:
+    allow_failures:
+        - go: tip
 
 install:
-    - dep ensure
+    - go get -t ./...
+    - go get github.com/FiloSottile/vendorcheck
+
+script:
+    - vendorcheck ./...
+    - go test -v ./...
